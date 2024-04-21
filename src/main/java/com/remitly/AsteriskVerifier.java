@@ -13,7 +13,7 @@ class AwsDocumentFileException extends Exception {
 }
 
 public class AsteriskVerifier {
-    boolean checkAsterisk(String path) throws AwsDocumentFileException {
+    static boolean checkAsterisk(String path) throws AwsDocumentFileException {
         try {
             BufferedReader br = new BufferedReader(new FileReader(path));
             StringBuilder content = new StringBuilder();
@@ -44,7 +44,7 @@ public class AsteriskVerifier {
         String path = "src\\main\\java\\com\\remitly\\aws-document.json";
 
         try {
-            boolean result = new AsteriskVerifier().checkAsterisk(path);
+            boolean result = checkAsterisk(path);
             System.out.println(result);
         } catch (AwsDocumentFileException e) {
             System.out.println(e.getMessage());

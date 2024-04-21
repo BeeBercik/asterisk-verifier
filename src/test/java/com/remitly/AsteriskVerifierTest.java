@@ -3,6 +3,7 @@ package com.remitly;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
+import static com.remitly.AsteriskVerifier.checkAsterisk;
 import static org.junit.jupiter.api.Assertions.*;
 
 class AsteriskVerifierTest {
@@ -16,14 +17,14 @@ class AsteriskVerifierTest {
     @Test
     void shouldThrowAwsDocumentFileExceptionBecauseOfFileProblem() {
         assertThrows(AwsDocumentFileException.class, () -> {
-            new AsteriskVerifier().checkAsterisk("src/test/java/com/remitly/incorrectAwsDocument.json");
+            checkAsterisk("src/test/java/com/remitly/incorrectAwsDocument.json");
         });
     }
 
     @Test
     void shouldThrowAwsDocumentFileExceptionBecauseOfBadPath() {
         assertThrows(AwsDocumentFileException.class, () -> {
-            new AsteriskVerifier().checkAsterisk(testPath + "BAD-VALUE");
+            checkAsterisk(testPath + "BAD-VALUE");
         });
     }
 
@@ -31,7 +32,7 @@ class AsteriskVerifierTest {
     void shouldReturnFalseWithAsterisk() {
        try {
            assertDoesNotThrow(() -> // in case when path is incorrest and exception is thrown test will fail
-               assertFalse(new AsteriskVerifier().checkAsterisk(testPath + "withAsterisk.json"))
+               assertFalse(checkAsterisk(testPath + "withAsterisk.json"))
            );
        } catch (Exception e) {
            e.printStackTrace();
@@ -42,7 +43,7 @@ class AsteriskVerifierTest {
     void shouldReturnTrueWithEmptyString() {
         try {
             assertDoesNotThrow(() ->
-                assertTrue(new AsteriskVerifier().checkAsterisk(testPath + "withEmptyString.json"))
+                assertTrue(checkAsterisk(testPath + "withEmptyString.json"))
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -53,7 +54,7 @@ class AsteriskVerifierTest {
     void shouldReturnTrueWithObject() {
         try {
             assertDoesNotThrow(() ->
-                assertTrue(new AsteriskVerifier().checkAsterisk(testPath + "withJsonObject.json"))
+                assertTrue(checkAsterisk(testPath + "withJsonObject.json"))
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -64,7 +65,7 @@ class AsteriskVerifierTest {
     void shouldReturnTrueWithJsonArray() {
         try {
             assertDoesNotThrow(() ->
-                assertTrue(new AsteriskVerifier().checkAsterisk(testPath + "withJsonArray.json"))
+                assertTrue(checkAsterisk(testPath + "withJsonArray.json"))
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -75,7 +76,7 @@ class AsteriskVerifierTest {
     void shouldReturnTrueWithBoolean() {
         try {
             assertDoesNotThrow(() ->
-                assertTrue(new AsteriskVerifier().checkAsterisk(testPath + "withBoolean.json"))
+                assertTrue(checkAsterisk(testPath + "withBoolean.json"))
             );
         } catch (Exception e) {
             e.printStackTrace();
@@ -86,7 +87,7 @@ class AsteriskVerifierTest {
     void shouldReturnTrueWithNull() {
         try {
             assertDoesNotThrow(() ->
-                    assertTrue(new AsteriskVerifier().checkAsterisk(testPath + "withNull.json")));
+                    assertTrue(checkAsterisk(testPath + "withNull.json")));
         } catch (Exception e) {
             e.printStackTrace();
         }
